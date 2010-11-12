@@ -12,13 +12,24 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/Users/nicopernas/Documents/workspace/multiagentTS/src/sqlite.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'NAME': '/Users/nicopernas/Documents/workspace/multiagentTS/src/sqlite.db', # Or path to database file if using sqlite3.
+        'USER': '', # Not used with sqlite3.
+        'PASSWORD': '', # Not used with sqlite3.
+        'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+
+# Path al directorio base del proyecto
+PROJECT_ROOT = '/Users/nicopernas/Documents/workspace/multiagentTS/src/multiagentTS'
+
+# Path al directorio base de la aplicacion User Agent
+USER_ROOT = '$PROJECT_ROOT/useragent'
+USER_IMGS_ROOT = 'USER_ROOT/img'
+USER_CSS_ROOT = '/Users/nicopernas/Documents/workspace/multiagentTS/src/multiagentTS/useragent/css'
+
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -77,10 +88,12 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'multiagentTS.urls'
 
+
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '$USER_ROOT/templates',
 )
 
 INSTALLED_APPS = (
@@ -89,6 +102,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+    'multiagentTS.useragent',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
