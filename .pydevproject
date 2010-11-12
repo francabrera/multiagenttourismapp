@@ -10,5 +10,6 @@
 </pydev_variables_property>
 <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
 <path>/multiagentTS/src</path>
+<path>/multiagentTS/multiagentTS.useragent.template</path>
 </pydev_pathproperty>
 </pydev_project>
