@@ -17,5 +17,5 @@ urlpatterns = patterns('',
     (r'^user/', include('useragent.urls')),
    	(r'^img/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.USER_IMGS_ROOT, 'show_indexes': True}),
    	(r'^css/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.USER_CSS_ROOT, 'show_indexes': True}),
-   	(r'^location/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/Users/nicopernas/Documents/workspace/multiagentTS/src/multiagentTS/locationagent/templates', 'show_indexes': True}),
+   #	(r'^location/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/Users/nicopernas/Documents/workspace/multiagentTS/src/multiagentTS/locationagent/templates', 'show_indexes': True}),
 )
