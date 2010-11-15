@@ -1,6 +1,7 @@
-<html>
-	<head>
-	<script type="text/javascript" src="http://maps.google.com/maps?file=api&v=2&key=[b]TU-CLAVE-DE-LA-API[/b]"></script>
+{% extends "base.html" %}
+{% block title %}Localizador{% endblock %}
+{% block head %}
+	<script type="text/javascript" src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAH0IStyKYvGwZXcreV0mSshT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSfhDz6JAIkpuDoLpccw_MDXkcQMg"></script>
 	<script type="text/javascript">
 	function initialize() {
 		  if (GBrowserIsCompatible()) {
@@ -18,13 +19,14 @@
 		  }
 		}	
 	
-	</script>
-	<title>Sistema Multi-Agente de información turística</title> 
-	    <link rel="stylesheet" type="text/css" href="/css/standard.css" /> 
-	</head>
-	<body onload="javascript:initialize()">
+	</script> 
+{% endblock %}
+	
+{% block bodyoptions %} onload="javascript:initialize()" {% endblock %}
+
+{% block content %}
 		<h1>Sistema Multi-Agente de información turística</h1>
+		<div id="map_canvas" style="width: 500px; height: 400px"></div>
 		
-	</body>
-</html> 
+{% endblock %}
 

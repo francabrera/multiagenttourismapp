@@ -1,0 +1,16 @@
+{% comment %}
+Esquema basico de la web.
+Proyecto: Agentes Inteligentes 2010-2011
+{% endcomment %}
+<html>
+<head>
+<meta http-equiv="Content-Language" content="es">
+{% block head %}{% endblock %}
+<title>Multiagent Tourism System | {% block title %}{% endblock %}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<link rel="stylesheet" type="text/css" href="/css/standard.css">
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" {% block bodyoptions %}{% endblock %}>
+{% block content %}{% endblock %}
+</body>
+</html>
