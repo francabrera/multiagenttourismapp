@@ -10,6 +10,6 @@ from django.conf import settings
 
 urlpatterns = patterns('locationagent.views',
 
-	(r'^$', 'index'),
+	(r'^$', 'showMap'),
 	(r'^index$', 'index'),
 )
