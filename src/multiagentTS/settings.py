@@ -27,7 +27,7 @@ PROJECT_ROOT = '/Users/nicopernas/Documents/workspace/multiagentTS/src/multiagen
 # Path al directorio base de la aplicacion User Agent
 USER_ROOT = '$PROJECT_ROOT/useragent'
 USER_IMGS_ROOT = 'USER_ROOT/img'
-USER_CSS_ROOT = '/Users/nicopernas/Documents/workspace/multiagentTS/src/multiagentTS/useragent/css'
+CSS_ROOT = '/Users/nicopernas/Documents/workspace/multiagentTS/src/multiagentTS/css'
 
 
 
