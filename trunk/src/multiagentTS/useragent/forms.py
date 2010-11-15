@@ -10,11 +10,10 @@ from django import forms
 class UserPreferencesForm(forms.Form):
 	ciudadOrigen = forms.CharField(max_length = 100, required = True)
 	ciudadDestino = forms.EmailField(max_length = 100, required = True)
-	message = forms.CharField(widget = forms.Textarea)
 
-	def clean_message(self):
-		message = self.cleaned_data['message']
-		num_words = len(message.split())
+	def clean_ciudadOrigen(self):
+		ciudad = self.cleaned_data['ciudadOrigen']
+		num_words = len(ciudadOrigen)
 		if num_words < 4:
 			raise forms.ValidationError("Not enough words!")
 		return message
