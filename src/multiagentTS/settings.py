@@ -1,4 +1,7 @@
 # Django settings for multiagentTS project.
+import os.path
+
+PROJECT_DIR = os.path.dirname(__file__) # this is not Django setting.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -22,7 +25,6 @@ DATABASES = {
 
 
 # Path al directorio base del proyecto
-PROJECT_ROOT = '/Users/nicopernas/Documents/workspace/multiagentTS/src/multiagentTS'
 
 # Path al directorio base de la aplicacion User Agent
 USER_ROOT = '$PROJECT_ROOT/useragent'
@@ -88,12 +90,9 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'multiagentTS.urls'
 
-
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    #'$USER_ROOT/templates',
+    os.path.join(PROJECT_DIR, 'templates'),
+    # here you can add another templates directory if you wish.
 )
 
 INSTALLED_APPS = (
