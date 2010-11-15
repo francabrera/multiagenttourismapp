@@ -25,11 +25,7 @@ DATABASES = {
 
 
 # Path al directorio base del proyecto
-
-# Path al directorio base de la aplicacion User Agent
-USER_ROOT = '$PROJECT_ROOT/useragent'
-USER_IMGS_ROOT = 'USER_ROOT/img'
-CSS_ROOT = '/Users/nicopernas/Documents/workspace/multiagentTS/src/multiagentTS/css'
+CSS_ROOT = os.path.join(PROJECT_DIR, 'css')
 
 
 
@@ -102,6 +98,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'multiagentTS.useragent',
+    'multiagentTS.location',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
