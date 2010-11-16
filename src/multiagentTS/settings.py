@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'multiagentTS.useragent',
     'multiagentTS.locationagent',
+    'multiagentTS.flightagent',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

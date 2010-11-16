@@ -13,7 +13,7 @@ def index(request):
 			return HttpResponseRedirect('thanks/')
 	else:
 		form = UserPreferencesForm()
-		return render_to_response('initial_form.html', {'form': form},
+		return render_to_response('useragent_initial_form.html', {'form': form},
 								context_instance = RequestContext(request))
 
 def thanks(request):
