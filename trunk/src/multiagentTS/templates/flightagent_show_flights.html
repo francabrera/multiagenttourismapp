@@ -1,17 +1,67 @@
 <html>
 	<head>
-	<title>Sistema Multi-Agente de información turística</title> 
-	    <link rel="stylesheet" type="text/css" href="/css/standard.css" /> 
+	<title>Sistema Multi-Agente de información turística</title> 
+	    <link rel="stylesheet" type="text/css" href="/css/flight.css" /> 
 	</head>
 	<body>
 		<h1>Vuelos disponibles</h1>
 		<hr/>
 		<form action="thanks" method="post">
 		{% csrf_token %}
-		<table>
-			{{ flights }}
-			
-		</table>
+			<div class="vuelo">
+				{% for flight in flights %}
+					<table id="vuelo" border="1px">
+						<!-- IDA -->
+						<tr>
+							<td>
+								<img src="/img/salida.png"/>
+								<span class="idavuelta">IDA</span>
+							</td>
+							<td>
+								<table>
+									<tr>
+									
+									</tr>
+									
+								</table>							
+							</td>						
+	
+							<td>
+							<!-- forloop.counter0  -->
+							<!-- 	airline		= models.CharField(max_length = 5)
+	airlinename = models.CharField(max_length = 5)
+	stops		= models.DateField()
+	durationmin	= models.CharField(max_length = 50)
+	type		= models.CharField(max_length = 50)
+	segments	= [] -->
+	
+								<table>
+									<tr>
+										<td>Salida</td>
+										<td>{{ flight.ida.depart }}</td>
+										<td>{{ flight.ida.orig }}</td>
+									</tr>
+									<tr>
+										<td>Llegada</td>
+										<td>{{ flight.ida.arrive }}</td>
+										<td>{{ flight.ida.dest }}</td>
+									</tr>
+								</table>
+							</td>
+	
+						</tr>
+						<!-- VUELTA --> 
+						<tr>
+							<td>
+								<img src="/img/llegada.png"/>
+								<span class="idavuelta">VUELTA</span>
+							</td>					
+						</tr>
+					
+					</table>
+				
+				{% endfor %}
+			</div>
 			<input type="submit" value="Enviar">
 		</form>
 	</body>
