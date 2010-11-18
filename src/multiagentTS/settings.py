@@ -26,7 +26,7 @@ DATABASES = {
 
 # Path al directorio base del proyecto
 CSS_ROOT = os.path.join(PROJECT_DIR, 'css')
-
+IMG_ROOT = os.path.join(PROJECT_DIR, 'img')
 
 
 # Local time zone for this installation. Choices can be found here:
