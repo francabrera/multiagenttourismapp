@@ -1,83 +1,41 @@
-h1,h2,h3,h4
-{
-font-family: arial, 'sans serif'; 
-}
+/* SETUP */
 
-p,table,li,address
-{
-font-family: arial, 'sans serif'; 
-margin-left: 0pt;
-}
+body { margin:15; padding:25px 50px 75px 100px; background:#092e20; color:white; }
+body, th, td { font:12px/1.4em Verdana,sans-serif; }
 
-p,li,th,td
-{
-font-size: 85%;
-margin-left: 12pt;
-}
+/* LINKS */
 
-th {background-color:#FFFFFF}
+a {text-decoration: none;}
+a img {border: none;}
+a:link, a:visited { color:#ffc757; }
+a:hover { color:#ffe761; }
 
-body
-{
-background-color: #225522;
-}
+/* CONTENT */
 
-h1,h2,h3,h4,hr 
-{
-color: #009933; 
-margin-left: 10pt;
-}
+h1,h2,h3 { margin-top:.8em; font-family:"Trebuchet MS",sans-serif; font-weight:normal; }
+h1 { font-size:218%; margin-top:.8em; margin-bottom:.2em; color:#4FBF4F; line-height:1.5em; }
+h2 { font-size:150%; color:#99FF99; }
+h3 { font-size:125%; font-weight:bold; color:#487858; }
+p, ul, dl { margin-top:.6em; margin-bottom:.8em; }
+hr { color:#ccc; background-color:#ccc; height:5px; border:0; }
+/* LISTS */
 
+ul { padding-left:2em; }
+ol { padding-left:30px; }
+ul li { list-style-type:square; margin-bottom:.4em; }
+ul ul { padding-left:1.2em; }
+ul ul ul { padding-left:1em; }
 
-#navi {  
-	list-style:none;
-	margin:0;
-	padding:5px;
-}
-#navi li {
-	margin:2px;
-	padding:0;
-	float:left;
-}
-#navi li a {
-	display:block;
-	padding:2px;
-	text-decoration:none;
-	text-align:center;
-	font-size:12px;
-	color:#FFFFFF;
-	background-color:#669966;
-}
-#navi li a:hover {
-	color:#000000;
-	background-color:#669933;
-}
+/* FORMS */
+form label { display: block; font-weight: bold; margin-top: 1.5em; margin-bottom: 0;}
+form label span { font-weight: normal; color: #555; }
+form input, 
+form textarea, 
+form select { width: 99%; padding: 1px; }
+form p { margin: 0; }
+form p.submit { text-align: right; margin-top: 1em; margin-right: 0;}
+form p.submit input { width: 10em; font-size: 1.5em; }
+form p.errors { margin: 0; padding: 0; font-weight: bold; color: red; }
 
-/*input
-{
-color: #000000;
-background: #ffffff;
-border: 1px solid #4B79A8;
-}*/
-
-input, select { 
-	font-size: 11px;
-	background-color: #81BE7D;
-	border: #D7FCD4;
-	border-style: solid;
-	border-top-width: 1px;
-	border-right-width: 1px;
-	border-bottom-width: 1px;
-	border-left-width: 1px
-}
-
-label {
-	font-size: 12px;
-	background-color: #E1F0E0;
-} 
-
-a:link    {color:#336633;}
-a:visited {color:#336633;}
-a:active  {color:#33FF33;}
-a:hover   {color:#33FF33;}
+#map_canvas {margin:-200px;position: relative; width: 0px; height: 0px;}
 
