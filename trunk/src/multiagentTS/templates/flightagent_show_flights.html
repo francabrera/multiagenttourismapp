@@ -18,24 +18,8 @@
 								<span class="idavuelta">IDA</span>
 							</td>
 							<td>
-								<table>
-									<tr>
-									
-									</tr>
-									
-								</table>							
-							</td>						
-	
-							<td>
 							<!-- forloop.counter0  -->
-							<!-- 	airline		= models.CharField(max_length = 5)
-	airlinename = models.CharField(max_length = 5)
-	stops		= models.DateField()
-	durationmin	= models.CharField(max_length = 50)
-	type		= models.CharField(max_length = 50)
-	segments	= [] -->
-	
-								<table>
+								<table border="1px">
 									<tr>
 										<td>Salida</td>
 										<td>{{ flight.ida.depart }}</td>
@@ -47,17 +31,34 @@
 										<td>{{ flight.ida.dest }}</td>
 									</tr>
 								</table>
-							</td>
-	
+							</td>		
 						</tr>
 						<!-- VUELTA --> 
 						<tr>
 							<td>
 								<img src="/img/llegada.png"/>
 								<span class="idavuelta">VUELTA</span>
-							</td>					
+							</td>
+							<td>
+							<!-- forloop.counter0  -->
+								<table border="1px">
+									<tr>
+										<td>Salida</td>
+										<td>{{ flight.vuelta.depart }}</td>
+										<td>{{ flight.vuelta.orig }}</td>
+									</tr>
+									<tr>
+										<td>Llegada</td>
+										<td>{{ flight.vuelta.arrive }}</td>
+										<td>{{ flight.vuelta.dest }}</td>
+									</tr>
+								</table>
+							</td>		
 						</tr>
-					
+						<tr>
+							<td>Precio</td>
+							<td>{{ flight.price }} {{ flight.moneda }}</td>
+						</tr>
 					</table>
 				
 				{% endfor %}

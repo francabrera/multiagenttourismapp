@@ -1,5 +1,5 @@
 from django.db import models
-
+from xml.etree.ElementTree import dump
 # Create your models here.
 '''
 '' Clase que gestiona un tramo de un vuelo
@@ -31,28 +31,22 @@ class SegmentModel(models.Model):
 '' Clase que gestiona una ida o vuelta de un vuelo
 '''
 class LegModel(models.Model):
-	airline		= models.CharField(max_length = 5)
-	airlinename = models.CharField(max_length = 5)
-	orig		= models.IntegerField()
+	orig		= models.CharField(max_length = 50)
 	dest		= models.CharField(max_length = 50)
 	depart		= models.DateField()
-	arrive	 	= models.CharField(max_length = 50)
-	stops		= models.DateField()
-	durationmin	= models.CharField(max_length = 50)
-	type		= models.CharField(max_length = 50)
+	arrive	 	= models.DateField()
+	stops		= models.IntegerField()
+	type		= models.CharField(max_length = 10)
 	segments	= []
 	
 
 	def __init__(self, leg):
 		models.Model.__init__(self)
-		self.airline = leg.findtext('airline')
-		self.airlinename = leg.findtext('airline_display')
 		self.orig = leg.findtext('orig')
 		self.dest = leg.findtext('dest')
 		self.depart = leg.findtext('depart')
 		self.arrive = leg.findtext('arrive')
 		self.stops = leg.findtext('stops')
-		self.duration_minutes = leg.findtext('duration_minutes')
 		self.type = leg.findtext('cabin')
 		segments = leg.findall('segment')
 		for seg in segments:
@@ -66,12 +60,14 @@ class LegModel(models.Model):
 '''
 class FlightModel(models.Model):
 	price	= models.CharField(max_length = 50)
+	moneda	= models.CharField(max_length = 10)
 	ida		= LegModel
 	vuelta	= LegModel
 
 	def __init__(self, trip):
 		models.Model.__init__(self)
 		self.price	= trip.findtext('price')
+		self.moneda = trip.find('price').attrib['currency']
 		legs = trip.find('legs')
 		self.ida = LegModel(legs[0])
 		if legs[1] is not None:
