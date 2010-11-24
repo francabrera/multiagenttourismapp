@@ -96,7 +96,7 @@ class CountryModels(models.Model):
 '''
 ''
 '''		
-class AirportModel(models.Model):
+class AirportModels(models.Model):
 	iatacode = models.CharField(max_length = 50)
 	name = models.CharField(max_length = 50)
 	city = models.CharField(max_length = 50)

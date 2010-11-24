@@ -9,59 +9,18 @@
 		<form action="thanks" method="post">
 		{% csrf_token %}
 			<div class="vuelo">
-				{% for flight in flights %}
-					<table id="vuelo" border="1px">
-						<!-- IDA -->
-						<tr>
-							<td>
-								<img src="/img/salida.png"/>
-								<span class="idavuelta">IDA</span>
-							</td>
-							<td>
-							<!-- forloop.counter0  -->
-								<table border="1px">
-									<tr>
-										<td>Salida</td>
-										<td>{{ flight.ida.depart }}</td>
-										<td>{{ flight.ida.orig }}</td>
-									</tr>
-									<tr>
-										<td>Llegada</td>
-										<td>{{ flight.ida.arrive }}</td>
-										<td>{{ flight.ida.dest }}</td>
-									</tr>
-								</table>
-							</td>		
-						</tr>
-						<!-- VUELTA --> 
-						<tr>
-							<td>
-								<img src="/img/llegada.png"/>
-								<span class="idavuelta">VUELTA</span>
-							</td>
-							<td>
-							<!-- forloop.counter0  -->
-								<table border="1px">
-									<tr>
-										<td>Salida</td>
-										<td>{{ flight.vuelta.depart }}</td>
-										<td>{{ flight.vuelta.orig }}</td>
-									</tr>
-									<tr>
-										<td>Llegada</td>
-										<td>{{ flight.vuelta.arrive }}</td>
-										<td>{{ flight.vuelta.dest }}</td>
-									</tr>
-								</table>
-							</td>		
-						</tr>
-						<tr>
-							<td>Precio</td>
-							<td>{{ flight.price }} {{ flight.moneda }}</td>
-						</tr>
-					</table>
-				
+			<table border="1">
+				<tr>
+					<td>IsoCode</td>
+					<td>Name</td>
+				</tr>
+				{% for c in country %}
+				<tr>
+					<td> {{ c.isocode }} </td>
+					<td> {{ c.name }} </td>
+				</tr>
 				{% endfor %}
+			</table>
 			</div>
 			<input type="submit" value="Enviar">
 		</form>
