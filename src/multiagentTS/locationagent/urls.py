@@ -11,5 +11,5 @@ from django.conf import settings
 urlpatterns = patterns('locationagent.views',
 
 	(r'^$', 'showMap'),
-	(r'^index$', 'index'),
+	#(r'^index$', 'showMap'),
 )
