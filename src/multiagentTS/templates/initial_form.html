@@ -67,12 +67,35 @@
         <tr>
           <th align="right">Desde:&nbsp;</th>
           <td>
-            <input type="text" size="25" id="fromAddress" name="from" value="Santa Cruz de Tenerife, Tenerife"/>
+	      	<!-- País de Origen -->
+	      	<select id="countriesOrigen" name="countriesOrigen" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('citiesOrigen'), this.selectedIndex)" >
+				<option value="" selected="selected">Seleccione un país...</option>
+			</select>
+		  </td>
+	      <td>
+			<!-- Ciudad de Origen -->
+			<select id="citiesOrigen" name="citiesOrigen" size="1" >
+				<option value="" selected="selected">Seleccione una ciudad...</option>
+			</select>
+			
+<!--            <input type="text" size="25" id="fromAddress" name="from" value="Santa Cruz de Tenerife, Tenerife"/>-->
           </td>
         </tr>
         <tr>
           <th align="right">&nbsp;&nbsp;Hasta:&nbsp;</th>
-          <td align="right"><input type="text" size="25" id="toAddress" name="to" value="San Cristóbal de La Laguna, Tenerife, España" />
+          <td>
+	      	<!-- País de Destino -->
+    	  	<select id="countriesDestino" name="countriesDestino" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('citiesDestino'), this.selectedIndex)" >
+				<option value="" selected="selected">Seleccione un país...</option>
+			</select>
+		  </td>
+	      <td>
+			<!-- Ciudad de Destino -->
+			<select id="citiesDestino" name="citiesDestino" size="1" >
+				<option value="" selected="selected">Seleccione una ciudad...</option>
+			</select>
+				
+<!--          <td align="right"><input type="text" size="25" id="toAddress" name="to" value="San Cristóbal de La Laguna, Tenerife, España" />-->
           </td>
         </tr>
         <tr>
@@ -90,5 +113,38 @@
     </form>
     <br/><br/>
     <div id="map_canvas"></div>
+    <script type="text/javascript">
+	   		var countries = new Array();
+	   		{% for c in countries %}
+	   			
+	   			countries[countries.length] = 
+	   				["{{ c.name }}", "{{ c.isocode }}", [ "Seleccione una ciudad...|" {% for a in c.getAirports %} ,"{{ a.city }} - {{ a.name }}|{{ a.iatacode}}" {% endfor %} ]];
+
+	   		{% endfor %}
+	   		
+	   		/* Selectores de los países de origen y destino */
+	   		var countryListOrigen = document.getElementById("countriesOrigen");
+	   		var countryListDestino = document.getElementById("countriesDestino");
+	   		
+	   		/* Número de paíse dados de alta */
+	   		var numOfCountries = countries.length;
+	   		
+ 			for (i = 1; i < numOfCountries; i++)
+			{
+ 				countryListOrigen.options[i] = new Option(countries[i][0], countries[i][1], false, false);
+ 				countryListDestino.options[i] = new Option(countries[i][0], countries[i][1], false, false);
+			}
+	   		
+	   		function updatecities(combo, selectIndex)
+	   		{
+	   			combo.options.length = 1;
+	   			if (selectIndex > 0)
+	   			{
+	   				var numOfAirports = countries[selectIndex][2].length;
+	   				for (i = 0; i < numOfAirports; i++)
+	   					combo.options[i] = new Option(countries[selectIndex][2][i].split("|")[0], countries[selectIndex][2][i].split("|")[1])
+	   			}
+	   		}
+	 </script> 
 {% endblock %}
 

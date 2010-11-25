@@ -1,28 +1,29 @@
 <html>
 	<head>
 	<title>Sistema Multi-Agente de información turística</title> 
-	    <link rel="stylesheet" type="text/css" href="/css/flight.css" /> 
+	    <link rel="stylesheet" type="text/css" href="/css/flight.css" />
 	</head>
 	<body>
 		<h1>Vuelos disponibles</h1>
 		<hr/>
+		
 		<form action="thanks" method="post">
 		{% csrf_token %}
 			<div class="vuelo">
-			<table border="1">
-				<tr>
-					<td>IsoCode</td>
-					<td>Name</td>
-				</tr>
-				{% for c in country %}
-				<tr>
-					<td> {{ c.isocode }} </td>
-					<td> {{ c.name }} </td>
-				</tr>
-				{% endfor %}
-			</table>
+
+							
+				<select id="countries" name="countries" size="1" onChange="updatecities(this.selectedIndex)" >
+				<option value="" selected="selected">Seleccione un país...</option>
+				</select>
+				
+				 <!--  onClick="alert(this.options[this.options.selectedIndex].value)"-->
+				<select id="cities" name="cities" size="1" >
+				<option value="" selected="selected">Seleccione una ciudad...</option>
+				</select>
+
 			</div>
 			<input type="submit" value="Enviar">
 		</form>
+		
 	</body>
 </html> 
