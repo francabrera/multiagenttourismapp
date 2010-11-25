@@ -1,10 +1,10 @@
 from django.db import models
-from xml.etree.ElementTree import dump
+
 # Create your models here.
 '''
 '' Clase que gestiona un tramo de un vuelo
 '''
-from django.db.models.fields.related import ForeignKey
+
 class SegmentModel(models.Model):
 	airline		 = models.CharField(max_length = 5)
 	flightnum	 = models.CharField(max_length = 5)
@@ -80,18 +80,3 @@ class FlightModel(models.Model):
 	def getVueltaSegments(self):
 		return self.vuelta.getSegments()
 	
-'''
-''
-'''
-class CountryModels(models.Model):
-	isocode = models.CharField(max_length = 2, primary_key = True)
-	name = models.CharField(max_length = 50)
-		
-'''
-''
-'''		
-class AirportModels(models.Model):
-	iatacode = models.CharField(max_length = 50)
-	name = models.CharField(max_length = 50)
-	city = models.CharField(max_length = 50)
-	country = models.ForeignKey(CountryModels)
