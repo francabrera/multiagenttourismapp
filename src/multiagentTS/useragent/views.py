@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from multiagentTS.useragent.forms import UserPreferencesForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
+from multiagentTS.useragent.models import CountryModels
 
 def index(request):
 	if request.method == 'POST':
@@ -13,7 +14,9 @@ def index(request):
 			return HttpResponseRedirect('thanks/')
 	else:
 		form = UserPreferencesForm()
-		return render_to_response('initial_form.html', {'form': form},
+		countrymodels = CountryModels.objects.all()
+
+		return render_to_response('initial_form.html', {'form': form, 'countries': countrymodels},
 								context_instance = RequestContext(request))
 
 def thanks(request):
