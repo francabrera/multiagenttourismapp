@@ -86,12 +86,6 @@ class FlightModel(models.Model):
 class CountryModels(models.Model):
 	isocode = models.CharField(max_length = 2, primary_key = True)
 	name = models.CharField(max_length = 50)
-	
-	def __init__(self, iatacode, name):
-		models.Model.__init__(self)
-		self.iatacode = iatacode
-		self.name = name
-	
 		
 '''
 ''
@@ -100,12 +94,4 @@ class AirportModels(models.Model):
 	iatacode = models.CharField(max_length = 50)
 	name = models.CharField(max_length = 50)
 	city = models.CharField(max_length = 50)
-	country = ForeignKey(CountryModels)
-
-	def __init__(self, iatacode, name, city, country):
-		models.Model.__init__(self)
-		self.iatacode = iatacode
-		self.name = name
-		self.city = city
-		self.country = country
-
+	country = models.ForeignKey(CountryModels)

@@ -3,4 +3,4 @@ from multiagentTS.flightagent.models import *
 
 
 admin.site.register(CountryModels)
-admin.site.register(AirportModel)
+admin.site.register(AirportModels)
