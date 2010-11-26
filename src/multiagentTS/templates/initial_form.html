@@ -59,22 +59,24 @@
 	</table>
 		<input type="submit" value="Enviar">
 	</form> -->
+	
 	<h2>User Agent</h2>
 	<h3>Elija su destino</h3>
 	<br/>
-	<form action="/user" name="formulario">
+	<form action="/user/" method="post">
+	{% csrf_token %}
       <table>
         <tr>
-          <th align="right">Desde:&nbsp;</th>
+          <th align="right">{{ form2.ciudadOrigen.label }}</th>
           <td>
 	      	<!-- País de Origen -->
-	      	<select id="countriesOrigen" name="countriesOrigen" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('citiesOrigen'), this.selectedIndex)" >
+	      	<select id="countriesOrigen" name="countriesOrigen" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('{{ form2.ciudadOrigen.html_name }}'), this.selectedIndex)" >
 				<option value="" selected="selected">Seleccione un país...</option>
 			</select>
 		  </td>
 	      <td>
 			<!-- Ciudad de Origen -->
-			<select id="citiesOrigen" name="citiesOrigen" size="1" >
+			<select id="{{ form2.ciudadOrigen.html_name }}" name="{{ form2.ciudadOrigen.html_name }}" size="1" >
 				<option value="" selected="selected">Seleccione una ciudad...</option>
 			</select>
 			
@@ -85,13 +87,13 @@
           <th align="right">&nbsp;&nbsp;Hasta:&nbsp;</th>
           <td>
 	      	<!-- País de Destino -->
-    	  	<select id="countriesDestino" name="countriesDestino" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('citiesDestino'), this.selectedIndex)" >
+    	  	<select id="countriesDestino" name="countriesDestino" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('{{ form2.ciudadDestino.html_name }}'), this.selectedIndex)" >
 				<option value="" selected="selected">Seleccione un país...</option>
 			</select>
 		  </td>
 	      <td>
 			<!-- Ciudad de Destino -->
-			<select id="citiesDestino" name="citiesDestino" size="1" >
+			<select id="{{ form2.ciudadDestino.html_name }}" name="{{ form2.ciudadDestino.html_name }}" size="1" >
 				<option value="" selected="selected">Seleccione una ciudad...</option>
 			</select>
 				
