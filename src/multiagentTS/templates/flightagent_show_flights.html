@@ -6,9 +6,10 @@
 	<body>
 		<h1>Vuelos disponibles</h1>
 		<hr/>
-		<form action="thanks" method="post">
+		<form action="/flight/" method="get">
 		{% csrf_token %}
 			<div class="vuelo">
+				{% autoescape off %}
 				{% for flight in flights %}
 					<table id="vuelo" border="1px">
 						<!-- IDA -->
@@ -23,12 +24,12 @@
 									<tr>
 										<td>Salida</td>
 										<td>{{ flight.ida.depart }}</td>
-										<td>{{ flight.ida.orig }}</td>
+										<td>{{ flight.ida.ciudadO }}</td>
 									</tr>
 									<tr>
 										<td>Llegada</td>
 										<td>{{ flight.ida.arrive }}</td>
-										<td>{{ flight.ida.dest }}</td>
+										<td>{{ flight.ida.ciudadD }}</td>
 									</tr>
 								</table>
 							</td>		
@@ -45,12 +46,12 @@
 									<tr>
 										<td>Salida</td>
 										<td>{{ flight.vuelta.depart }}</td>
-										<td>{{ flight.vuelta.orig }}</td>
+										<td>{{ flight.vuelta.ciudadO }}</td>
 									</tr>
 									<tr>
 										<td>Llegada</td>
 										<td>{{ flight.vuelta.arrive }}</td>
-										<td>{{ flight.vuelta.dest }}</td>
+										<td>{{ flight.vuelta.ciudadD }}</td>
 									</tr>
 								</table>
 							</td>		
@@ -62,6 +63,7 @@
 					</table>
 				
 				{% endfor %}
+				{% endautoescape %}
 			</div>
 			<input type="submit" value="Enviar">
 		</form>

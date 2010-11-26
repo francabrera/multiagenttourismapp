@@ -1,4 +1,5 @@
 from django.db import models
+from multiagentTS.funciones import getAirportLocation
 
 # Create your models here.
 '''
@@ -39,6 +40,8 @@ class LegModel(models.Model):
 	stops		= models.IntegerField()
 	type		= models.CharField(max_length = 10)
 	segments	= []
+	ciudadO 	= models.CharField(max_length = 50)
+	ciudadD 	= models.CharField(max_length = 50)
 	
 
 	def __init__(self, leg):
@@ -50,6 +53,8 @@ class LegModel(models.Model):
 		self.stops = leg.findtext('stops')
 		self.type = leg.findtext('cabin')
 		segments = leg.findall('segment')
+		self.ciudadO = getAirportLocation(self.orig)
+		self.ciudadD = getAirportLocation(self.dest)
 		for seg in segments:
 			self.segments.append(SegmentModel(seg))
 
@@ -64,7 +69,7 @@ class FlightModel(models.Model):
 	moneda	= models.CharField(max_length = 10)
 	ida		= LegModel
 	vuelta	= LegModel
-
+	
 	def __init__(self, trip):
 		models.Model.__init__(self)
 		self.price	= trip.findtext('price')
@@ -73,6 +78,7 @@ class FlightModel(models.Model):
 		self.ida = LegModel(legs[0])
 		if legs[1] is not None:
 			self.vuelta = LegModel(legs[1])
+			
 			
 	def getIdaSegments(self):
 		return self.ida.getSegments()
