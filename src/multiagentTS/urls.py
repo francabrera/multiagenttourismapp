@@ -13,10 +13,11 @@ urlpatterns = patterns('',
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
+    (r'^admin/', include('admin.site.urls')),
     (r'^user/', include('useragent.urls')),
     (r'^location/', include('locationagent.urls')),
 	(r'^flight/', include('flightagent.urls')),
+    (r'^news/', include('newsagent.urls')),
    	# Rutas estaticas
    	(r'^css/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.CSS_ROOT, 'show_indexes': True}),
    	(r'^img/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.IMG_ROOT, 'show_indexes': True}),
