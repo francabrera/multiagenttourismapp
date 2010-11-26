@@ -1,29 +1,69 @@
 <html>
 	<head>
 	<title>Sistema Multi-Agente de información turística</title> 
-	    <link rel="stylesheet" type="text/css" href="/css/flight.css" />
+	    <link rel="stylesheet" type="text/css" href="/css/flight.css" /> 
 	</head>
 	<body>
 		<h1>Vuelos disponibles</h1>
 		<hr/>
-		
 		<form action="thanks" method="post">
 		{% csrf_token %}
 			<div class="vuelo">
-
-							
-				<select id="countries" name="countries" size="1" onChange="updatecities(this.selectedIndex)" >
-				<option value="" selected="selected">Seleccione un país...</option>
-				</select>
+				{% for flight in flights %}
+					<table id="vuelo" border="1px">
+						<!-- IDA -->
+						<tr>
+							<td>
+								<img src="/img/salida.png"/>
+								<span class="idavuelta">IDA</span>
+							</td>
+							<td>
+							<!-- forloop.counter0  -->
+								<table border="1px">
+									<tr>
+										<td>Salida</td>
+										<td>{{ flight.ida.depart }}</td>
+										<td>{{ flight.ida.orig }}</td>
+									</tr>
+									<tr>
+										<td>Llegada</td>
+										<td>{{ flight.ida.arrive }}</td>
+										<td>{{ flight.ida.dest }}</td>
+									</tr>
+								</table>
+							</td>		
+						</tr>
+						<!-- VUELTA --> 
+						<tr>
+							<td>
+								<img src="/img/llegada.png"/>
+								<span class="idavuelta">VUELTA</span>
+							</td>
+							<td>
+							<!-- forloop.counter0  -->
+								<table border="1px">
+									<tr>
+										<td>Salida</td>
+										<td>{{ flight.vuelta.depart }}</td>
+										<td>{{ flight.vuelta.orig }}</td>
+									</tr>
+									<tr>
+										<td>Llegada</td>
+										<td>{{ flight.vuelta.arrive }}</td>
+										<td>{{ flight.vuelta.dest }}</td>
+									</tr>
+								</table>
+							</td>		
+						</tr>
+						<tr>
+							<td>Precio</td>
+							<td>{{ flight.price }} {{ flight.moneda }}</td>
+						</tr>
+					</table>
 				
-				 <!--  onClick="alert(this.options[this.options.selectedIndex].value)"-->
-				<select id="cities" name="cities" size="1" >
-				<option value="" selected="selected">Seleccione una ciudad...</option>
-				</select>
-
+				{% endfor %}
 			</div>
 			<input type="submit" value="Enviar">
 		</form>
-		
 	</body>
 </html> 
