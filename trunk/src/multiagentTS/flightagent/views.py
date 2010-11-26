@@ -7,12 +7,16 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from multiagentTS.flightagent.models import *
 from multiagentTS.kayak import start_flight_search
-from multiagentTS.funciones import getInfoFromAirportCode
 
 def index(request):
 
-	getInfoFromAirportCode('http://maps.google.com/maps/geo?q=MVD&output=xml&sensor=true&language=es')
-	flightsearch = start_flight_search('n', 'MVD', 'TCI', '12/04/2010', '12/07/2010', 'a', 'a', '1', 'e', '10')
+	airportOrigen = 'TCI' #request
+	airportDestino = 'MVD' #request
+	fechaSalida = '01/04/2011' #request
+	fechaRegreso = '01/15/2011' #request
+	
+	flightsearch = start_flight_search('n', airportOrigen, airportDestino, fechaSalida, fechaRegreso, 'a', 'a', '1', 'e', '5')
+
 	if flightsearch is None:
 		print "Mandar el error al template..."
 	else:
@@ -20,4 +24,4 @@ def index(request):
 		for f in flightsearch:
 			flights.append(FlightModel(f))
 	return render_to_response('flightagent_show_flights.html', {'flights': flights },
-								context_instance = RequestContext(request))
+							context_instance = RequestContext(request))

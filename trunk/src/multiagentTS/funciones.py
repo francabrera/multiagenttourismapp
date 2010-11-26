@@ -5,14 +5,20 @@ Created on 26/11/2010
 '''
 
 from xml.etree.ElementTree import ElementTree
-from xml.etree.ElementTree import dump
+from xml.etree.ElementTree import tostring
+import re
+
+
 import urllib
 
-def getInfoFromAirportCode(url):
-    xmlresponse = urllib.urlopen(url)
+webserviceUrl = 'http://www.momondo.com/GeoWS.asmx/CompleteAirport?prefixText='
+ 
+def getAirportLocation(airportCode):
+    xmlresponse = urllib.urlopen(webserviceUrl + airportCode)
     if xmlresponse is None:
         return None
     else:
         parser = ElementTree()
         parser.parse(xmlresponse)
-        dump(parser)
+        str = tostring(parser.getroot())
+        return re.sub('\<.*?\>', '', str)
