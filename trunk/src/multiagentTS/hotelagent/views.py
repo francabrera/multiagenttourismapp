@@ -15,7 +15,7 @@ def index(request):
     guests1 = '1'
     rooms = '1'
 
-    hotelsearch = start_hotel_search(othercity, checkin_date, checkout_date, guests1, rooms, '10', 'normal', 'down', 'price')
+    hotelsearch = start_hotel_search(othercity, checkin_date, checkout_date, guests1, rooms, '3', 'normal', 'down', 'price')
 
     if hotelsearch is None:
         raise  Exception("Mandar el error al template...")        #render_to_response('error_flight.html', {}, context_instance = RequestContext(request))
