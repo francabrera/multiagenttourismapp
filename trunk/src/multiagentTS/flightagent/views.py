@@ -5,20 +5,15 @@ Created on 15/11/2010
 '''
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from multiagentTS.flightagent.models import *
+from multiagentTS.flightagent.models import FlightModel
 from multiagentTS.kayak import start_flight_search
 
-def index(request):
+def index(request, airportOrigen, fechaSalida, airportDestino, fechaRegreso):
 
-	airportOrigen = 'TCI' #request
-	airportDestino = 'MVD' #request
-	fechaSalida = '01/04/2011' #request
-	fechaRegreso = '01/15/2011' #request
-	
-	flightsearch = start_flight_search('n', airportOrigen, airportDestino, fechaSalida, fechaRegreso, 'a', 'a', '1', 'e', '5')
+	flightsearch = start_flight_search('n', airportOrigen, airportDestino, fechaSalida.replace('-','/'), fechaRegreso.replace('-','/'), 'a', 'a', '1', 'e', '5')
 
 	if flightsearch is None:
-		print "Mandar el error al template..."
+		raise  Exception("Mandar el error al template...")		#render_to_response('error_flight.html', {}, context_instance = RequestContext(request))
 	else:
 		flights = []
 		for f in flightsearch:

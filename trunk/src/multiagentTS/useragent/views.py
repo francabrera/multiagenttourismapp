@@ -12,7 +12,7 @@ def index(request):
 	if request.method == 'POST':
 		#form = UserPreferencesForm(request.POST)
 		form2 = UserPreferencesForm(request.POST)
-		if form.is_valid():
+		if form2.is_valid():
 			#cd = form.cleaned_data
 			#send_mail(cd['subject'], cd['message'])
 			return HttpResponseRedirect(showMap, 'A','B','C','D')

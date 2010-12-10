@@ -8,8 +8,8 @@ from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
 
-urlpatterns = patterns('flightagent.views',
+urlpatterns = patterns('hotelagent.views',
 
 #	('n', airportOrigen, airportDestino, fechaSalida, fechaRegreso, 'a', 'a', '1', 'e', '5')
-	(r'^(?P<airportOrigen>\w{3})/(?P<fechaSalida>\d{2}-\d{2}-\d{4})/to/(?P<airportDestino>\w{3})/(?P<fechaRegreso>\d{2}-\d{2}-\d{4})$', 'index'),
+	(r'^$', 'index'),
 )
