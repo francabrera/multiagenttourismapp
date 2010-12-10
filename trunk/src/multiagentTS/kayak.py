@@ -58,12 +58,14 @@ def start_hotel_search(othercity, checkin_date, checkout_date, guests1, rooms, n
         raise Exception('No se pudo obtener identificador de sesion...')
     else:
         url = hostname + apisearch + '&othercity=' + othercity + '&checkin_date=' + checkin_date + '&checkout_date=' + checkout_date + '&guests1=' + guests1 + '&rooms=' + rooms + '&action=doHotels&version=1&_sid_=' + sid
-        searchId = getAndParseUrl(url)
-        searchId = searchId.findtext('searchid')
-        url = hostname + '/s/basic/hotel?searchid=' + searchId + '&_sid_=' + sid + '&c=' + numres + '&m='+ mode + '&d=' + sortdir + '&s=' + sortkey + '&apimode=1&version=1'
-        parse = getAndParseUrl(url)
-        if parse is None:
+        searchId = getAndParseUrl(url).findtext('searchid')
+        if searchId is None:
             return None
-        else: 
-            return parse.findall('hotels/hotel')
+        else:
+            url = hostname + '/s/basic/hotel?searchid=' + searchId + '&_sid_=' + sid + '&c=' + numres + '&m='+ mode + '&d=' + sortdir + '&s=' + sortkey + '&apimode=1&version=1'
+            parse = getAndParseUrl(url)
+            if parse is None:
+                return None
+            else: 
+                return parse.findall('hotels/hotel')
 ''' ----------------------------------------------------------------------- '''
