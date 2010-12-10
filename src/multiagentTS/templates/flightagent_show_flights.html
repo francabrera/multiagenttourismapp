@@ -6,66 +6,70 @@
 	<body>
 		<h1>Vuelos disponibles</h1>
 		<hr/>
-		<form action="/flight/" method="get">
+		<form action="/user/" method="get">
 		{% csrf_token %}
 			<div class="vuelo">
 				{% autoescape off %}
-				{% for flight in flights %}
-					<table id="vuelo" border="1px">
-						<!-- IDA -->
-						<tr>
-							<td>
-								<img src="/img/salida.png"/>
-								<span class="idavuelta">IDA</span>
-							</td>
-							<td>
-							<!-- forloop.counter0  -->
-								<table border="1px">
-									<tr>
-										<td>Salida</td>
-										<td>{{ flight.ida.depart }}</td>
-										<td>{{ flight.ida.ciudadO }}</td>
-									</tr>
-									<tr>
-										<td>Llegada</td>
-										<td>{{ flight.ida.arrive }}</td>
-										<td>{{ flight.ida.ciudadD }}</td>
-									</tr>
-								</table>
-							</td>		
-						</tr>
-						<!-- VUELTA --> 
-						<tr>
-							<td>
-								<img src="/img/llegada.png"/>
-								<span class="idavuelta">VUELTA</span>
-							</td>
-							<td>
-							<!-- forloop.counter0  -->
-								<table border="1px">
-									<tr>
-										<td>Salida</td>
-										<td>{{ flight.vuelta.depart }}</td>
-										<td>{{ flight.vuelta.ciudadO }}</td>
-									</tr>
-									<tr>
-										<td>Llegada</td>
-										<td>{{ flight.vuelta.arrive }}</td>
-										<td>{{ flight.vuelta.ciudadD }}</td>
-									</tr>
-								</table>
-							</td>		
-						</tr>
-						<tr>
-							<td>Precio</td>
-							<td>{{ flight.price }} {{ flight.moneda }}</td>
-						</tr>
-					</table>
-				
-				{% endfor %}
+				{% if flights %}
+					{% for flight in flights %}
+						<table id="vuelo" border="1px">
+							<!-- IDA -->
+							<tr>
+								<td>
+									<img src="/img/salida.png"/>
+									<span class="idavuelta">IDA</span>
+								</td>
+								<td>
+								<!-- forloop.counter0  -->
+									<table border="1px">
+										<tr>
+											<td>Salida</td>
+											<td>{{ flight.ida.depart }}</td>
+											<td>{{ flight.ida.ciudadO }}</td>
+										</tr>
+										<tr>
+											<td>Llegada</td>
+											<td>{{ flight.ida.arrive }}</td>
+											<td>{{ flight.ida.ciudadD }}</td>
+										</tr>
+									</table>
+								</td>		
+							</tr>
+							<!-- VUELTA --> 
+							<tr>
+								<td>
+									<img src="/img/llegada.png"/>
+									<span class="idavuelta">VUELTA</span>
+								</td>
+								<td>
+								<!-- forloop.counter0  -->
+									<table border="1px">
+										<tr>
+											<td>Salida</td>
+											<td>{{ flight.vuelta.depart }}</td>
+											<td>{{ flight.vuelta.ciudadO }}</td>
+										</tr>
+										<tr>
+											<td>Llegada</td>
+											<td>{{ flight.vuelta.arrive }}</td>
+											<td>{{ flight.vuelta.ciudadD }}</td>
+										</tr>
+									</table>
+								</td>		
+							</tr>
+							<tr>
+								<td>Precio</td>
+								<td>{{ flight.price }} {{ flight.moneda }}</td>
+							</tr>
+						</table>
+					
+					{% endfor %}
+				{% else %}
+					<h3>No se ha encontrado ningún vuelo disponible.</h3>
+				{% endif %}
 				{% endautoescape %}
 			</div>
-			<input type="submit" value="Enviar">
+			<input type="submit" value="Volver">
 		</form>
 	</body>
 </html> 

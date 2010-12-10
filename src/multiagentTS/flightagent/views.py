@@ -10,12 +10,12 @@ from multiagentTS.kayak import start_flight_search
 
 def index(request, airportOrigen, fechaSalida, airportDestino, fechaRegreso):
 
-	flightsearch = start_flight_search('n', airportOrigen, airportDestino, fechaSalida.replace('-','/'), fechaRegreso.replace('-','/'), 'a', 'a', '1', 'e', '5')
+	fechaSalida = fechaSalida.replace('-','/')
+	fechaRegreso = fechaRegreso.replace('-','/')
+	flightsearch = start_flight_search('n', airportOrigen, airportDestino, fechaSalida, fechaRegreso, 'a', 'a', '1', 'e', '5')
 
-	if flightsearch is None:
-		raise  Exception("Mandar el error al template...")		#render_to_response('error_flight.html', {}, context_instance = RequestContext(request))
-	else:
-		flights = []
+	flights = []
+	if flightsearch is not None:
 		for f in flightsearch:
 			flights.append(FlightModel(f))
 	return render_to_response('flightagent_show_flights.html', {'flights': flights },
