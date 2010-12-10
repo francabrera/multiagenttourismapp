@@ -28,7 +28,12 @@
 
 {% block content %}
 <!--		<div id="map_canvas" style="width: 100%; height: 600px"></div>-->
-		{{ flighturl }}
+		<ul>
+			<li><a href={{ guide_url }}> Agente Guía</a></li>
+			<li><a href={{ flight_url }}> Agente de vuelos</a></li>
+			<li><a href={{ hotel_url }}> Agente de hoteles</a></li>
+			<li><a href={{ image_url }}> Agente de imágenes</a></li>
+		</ul>
 		</br>
 		
 {% endblock %}

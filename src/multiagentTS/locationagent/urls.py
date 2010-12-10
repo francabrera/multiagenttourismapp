@@ -10,5 +10,7 @@ from django.conf import settings
 
 urlpatterns = patterns('locationagent.views',
 	(r'^(?P<pais_origen>\w+)/(?P<ciudad_origen>\w+)/to/(?P<pais_destino>\w+)/(?P<ciudad_destino>\w+)$', 'showMap'),
+	(r'^$', 'showMap', {'pais_origen': 'pais1', 'ciudad_origen': 'ciudad1',
+						'pais_destino': 'pais2', 'ciudad_destino': 'ciudad2'}),
 	#(r'^index$', 'showMap'),
 )
