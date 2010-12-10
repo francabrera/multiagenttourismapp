@@ -1,5 +1,5 @@
 # Create your views here.
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from multiagentTS.useragent.forms import *
 from multiagentTS.locationagent.views import showMap
 from django.http import HttpResponseRedirect, HttpResponse
@@ -12,10 +12,15 @@ def index(request):
 	if request.method == 'POST':
 		#form = UserPreferencesForm(request.POST)
 		form2 = UserPreferencesForm(request.POST)
-		if form2.is_valid():
+		#if form2.is_valid():
 			#cd = form.cleaned_data
 			#send_mail(cd['subject'], cd['message'])
-			return HttpResponseRedirect(showMap, 'A','B','C','D')
+		return redirect('showMap', ciudad_origen = 'p1',
+									   ciudad_destino = 'p1',
+									   pais_origen = 'p1',
+									   pais_destino = 'p1')
+
+		#return render_to_response('location', {})
 	else:
 		form = UserPreferencesForm()
 		form2 = UserPreferencesForm()
