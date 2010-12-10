@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     (r'^location/', include('locationagent.urls')),
 	(r'^flight/', include('flightagent.urls')),
     (r'^news/', include('newsagent.urls')),
+    (r'^image/', include('imageagent.urls')),
     (r'^hotel/', include('hotelagent.urls')),
    	# Rutas estaticas
    	(r'^css/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.CSS_ROOT, 'show_indexes': True}),
