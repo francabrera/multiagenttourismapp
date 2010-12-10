@@ -12,21 +12,19 @@ def index(request):
 	if request.method == 'POST':
 		#form = UserPreferencesForm(request.POST)
 		form2 = UserPreferencesForm(request.POST)
-		#if form2.is_valid():
-			#cd = form.cleaned_data
+		if form2.is_valid():
 			#send_mail(cd['subject'], cd['message'])
-		return redirect('showMap', ciudad_origen = 'p1',
-									   ciudad_destino = 'p1',
-									   pais_origen = 'p1',
-									   pais_destino = 'p1')
+			return showMap(request, ciudad_origen = form2.clean_ciudadOrigen(),
+						 ciudad_destino = form2.clean_ciudadDestino(),
+						pais_origen = 'pais1',
+						pais_destino = 'pais2')
 
 		#return render_to_response('location', {})
 	else:
-		form = UserPreferencesForm()
 		form2 = UserPreferencesForm()
 		countrymodels = CountryModels.objects.all()
 
-		return render_to_response('initial_form.html', {'form': form, 'form2': form2,
+		return render_to_response('initial_form.html', {'form2': form2,
 								'countries': countrymodels},
 								context_instance = RequestContext(request))
 

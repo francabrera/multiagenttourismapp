@@ -15,14 +15,12 @@ class UserPreferencesForm(forms.Form):
 
 	def clean_ciudadOrigen(self):
 		ciudad = self.cleaned_data['ciudadOrigen']
-		if str.count(ciudad) == 0:
-			raise forms.ValidationError("La ciudad de origen no puede ser vacia...")
+
 		return ciudad
 
 	def clean_ciudadDestino(self):
 		ciudad = self.cleaned_data['ciudadDestino']
-		if str.count(ciudad) == 0:
-			raise forms.ValidationError("La ciudad de destino no puede ser vacia...")
+
 		return ciudad
 	
 class CountryForm(ModelForm):
