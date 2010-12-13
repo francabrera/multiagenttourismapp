@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Error{% endblock %}
+{% block head %}
+
+{% endblock %}
+	
+{% block bodyoptions %} onload="javascript:initialize()" {% endblock %}
+
+{% block section %} Error! {% endblock %}
+
+{% block content %}
+		<form action="/user/" method="get">
+		{% csrf_token %}
+			<div class="vuelo">
+				{% autoescape off %}
+					{{ message }}
+				{% endautoescape %}
+			</div>
+			<input type="submit" value="Volver">
+		</form>
+
+{% endblock %}
