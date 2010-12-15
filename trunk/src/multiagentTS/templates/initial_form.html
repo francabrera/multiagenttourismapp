@@ -42,6 +42,9 @@
     }
 
     </script>
+    <script language="JavaScript" src="/js/calendar_us.js"></script>
+	<link rel="stylesheet" href="/css/calendar.css">
+    
 {% endblock %}
 {% block title %}Index {% endblock %}
 {% block bodyoptions %} 
@@ -63,7 +66,7 @@
 	<h2>User Agent</h2>
 	<h3>Elija su destino</h3>
 	<br/>
-	<form action="/user/" method="post">
+	<form action="/user/" method="post" name="initialForm">
 	{% csrf_token %}
       <table>
         <tr>
@@ -79,8 +82,6 @@
 			<select id="{{ form2.ciudadOrigen.html_name }}" name="{{ form2.ciudadOrigen.html_name }}" size="1" >
 				<option value="" selected="selected">Seleccione una ciudad...</option>
 			</select>
-			
-<!--            <input type="text" size="25" id="fromAddress" name="from" value="Santa Cruz de Tenerife, Tenerife"/>-->
           </td>
         </tr>
         <tr>
@@ -96,22 +97,32 @@
 			<select id="{{ form2.ciudadDestino.html_name }}" name="{{ form2.ciudadDestino.html_name }}" size="1" >
 				<option value="" selected="selected">Seleccione una ciudad...</option>
 			</select>
-				
-<!--          <td align="right"><input type="text" size="25" id="toAddress" name="to" value="San Cristóbal de La Laguna, Tenerife, España" />-->
           </td>
         </tr>
+        </table>
+        <table>
         <tr>
-          <th align="right">Idioma:&nbsp;</th>
+          <th align="right">Fecha de salida:&nbsp;</th>
           <td colspan="3">
-            <select id="locale" name="locale">
-              <option value="en" >English</option>
-              <option value="es" selected>Espa&ntilde;ol</option>
-            </select>
+          	<input type="text" size="10" id="fechaSalida" name="fechaSalida" />
+          	<script language="JavaScript">
+				new tcal ({
+				'formname': 'initialForm',
+				'controlname': 'fechaSalida'
+				});
+			</script>
+          	
           </td>
         </tr>
-        <tr><th></th></th><td><input name="comprobar" type="submit" value="COMPROBAR" onclick="setDirections(formulario.from.value, formulario.to.value, formulario.locale.value); return false" />
-        <input name="submit" type="submit" value="IR" /></td></tr>
-     </table>
+        
+        <tr>
+          <th align="right">Fecha de vuelta:&nbsp;</th>
+          <td colspan="3">
+          </td>
+        </tr>
+        </table>
+        <input name="submit" type="submit" value="IR" />
+     
     </form>
     <br/><br/>
     <div id="map_canvas"></div>
