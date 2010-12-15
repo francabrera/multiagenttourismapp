@@ -16,18 +16,18 @@ function f_tcalParseDate (s_date) {
 
 	var re_date = /^\s*(\d{1,2})\/(\d{1,2})\/(\d{2,4})\s*$/;
 	if (!re_date.exec(s_date))
-		return alert ("Invalid date: '" + s_date + "'.\nAccepted format is mm/dd/yyyy.")
-	var n_day = Number(RegExp.$2),
-		n_month = Number(RegExp.$1),
+		return alert ("Fecha no válida: '" + s_date + "'.\nEl formato correcto es DD/MM/AAAA.")
+	var n_day = Number(RegExp.$1),
+		n_month = Number(RegExp.$2),
 		n_year = Number(RegExp.$3);
 	
 	if (n_year < 100)
 		n_year += (n_year < this.a_tpl.centyear ? 2000 : 1900);
 	if (n_month < 1 || n_month > 12)
-		return alert ("Invalid month value: '" + n_month + "'.\nAllowed range is 01-12.");
+		return alert ("Mes del año no válido: '" + n_month + "'.\nDebe estar comprendido entre 01 - 12.");
 	var d_numdays = new Date(n_year, n_month, 0);
 	if (n_day > d_numdays.getDate())
-		return alert("Invalid day of month value: '" + n_day + "'.\nAllowed range for selected month is 01 - " + d_numdays.getDate() + ".");
+		return alert("Día del mes no válido: '" + n_day + "'.\nDebe estar comprendido entre 01 - " + d_numdays.getDate() + ".");
 
 	return new Date (n_year, n_month - 1, n_day);
 }
