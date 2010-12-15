@@ -9,20 +9,26 @@ from django.forms.models import inlineformset_factory
 
 def index(request):
 	FriendshipFormSet = inlineformset_factory(CountryModels, AirportModels)
+	countrymodels = CountryModels.objects.all()
 	if request.method == 'POST':
 		#form = UserPreferencesForm(request.POST)
 		form2 = UserPreferencesForm(request.POST)
 		if form2.is_valid():
 			#send_mail(cd['subject'], cd['message'])
+			request.session['fecha_salida'] = form2.clean_fechaSalida()
+			request.session['fecha_llegada'] = form2.clean_fechaLlegada()
 			return showMap(request, ciudad_origen = form2.clean_ciudadOrigen(),
 						 ciudad_destino = form2.clean_ciudadDestino(),
-						pais_origen = 'pais1',
-						pais_destino = 'pais2')
+						pais_origen = form2.clean_paisOrigen(),
+						pais_destino = form2.clean_paisDestino())
+		else:
+			return render_to_response('initial_form.html', {'form2': form2,
+								'countries': countrymodels},
+								context_instance = RequestContext(request))
 
 		#return render_to_response('location', {})
 	else:
 		form2 = UserPreferencesForm()
-		countrymodels = CountryModels.objects.all()
 
 		return render_to_response('initial_form.html', {'form2': form2,
 								'countries': countrymodels},

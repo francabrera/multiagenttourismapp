@@ -66,6 +66,8 @@
 	<h2>User Agent</h2>
 	<h3>Elija su destino</h3>
 	<br/>
+	<p> {{ form2.errors }}</p>
+	<br/>
 	<form action="/user/" method="post" name="initialForm">
 	{% csrf_token %}
       <table>
@@ -73,7 +75,7 @@
           <th align="left">Desde:</th>
           <td>
 	      	<!-- País de Origen -->
-	      	<select id="countriesOrigen" name="countriesOrigen" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('{{ form2.ciudadOrigen.html_name }}'), this.selectedIndex)" >
+	      	<select id="{{ form2.paisOrigen.html_name }}" name="{{ form2.paisOrigen.html_name }}" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('{{ form2.ciudadOrigen.html_name }}'), this.selectedIndex)" >
 				<option value="" selected="selected">Seleccione un país...</option>
 			</select>
 		  </td>
@@ -88,7 +90,7 @@
           <th align="left">Hasta:</th>
           <td>
 	      	<!-- País de Destino -->
-    	  	<select id="countriesDestino" name="countriesDestino" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('{{ form2.ciudadDestino.html_name }}'), this.selectedIndex)" >
+    	  	<select id="{{ form2.paisDestino.html_name }}" name="{{ form2.paisDestino.html_name }}" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('{{ form2.ciudadDestino.html_name }}'), this.selectedIndex)" >
 				<option value="" selected="selected">Seleccione un país...</option>
 			</select>
 		  </td>
@@ -104,13 +106,13 @@
         <tr>
           <th align="left">Fecha de salida:</th>
           <td colspan="3">
-          	<input type="text" size="10" id="fechaSalida" name="fechaSalida" />
+          	<input type="text" size="10" id="{{ form2.fechaSalida.html_name }}" name="{{ form2.fechaSalida.html_name }}" />
           	</td>
           <td>
           	<script language="JavaScript">
 				new tcal ({
 				'formname': 'initialForm',
-				'controlname': 'fechaSalida'
+				'controlname': '{{ form2.fechaSalida.html_name }}'
 				});
 			</script>
           	
@@ -120,13 +122,13 @@
         <tr>
           <th align="left">Fecha de vuelta:</th>
           <td colspan="3">
-          	<input type="text" size="10" id="fechaLlegada" name="fechaLlegada" />
+          	<input type="text" size="10" id="{{ form2.fechaLlegada.html_name }}" name="{{ form2.fechaLlegada.html_name }}" />
           </td>
           <td>
           	<script language="JavaScript">
 				new tcal ({
 				'formname': 'initialForm',
-				'controlname': 'fechaLlegada'
+				'controlname': '{{ form2.fechaLlegada.html_name }}'
 				});
 			</script>
           	
@@ -148,8 +150,8 @@
 	   		{% endfor %}
 	   		
 	   		/* Selectores de los países de origen y destino */
-	   		var countryListOrigen = document.getElementById("countriesOrigen");
-	   		var countryListDestino = document.getElementById("countriesDestino");
+	   		var countryListOrigen = document.getElementById("{{ form2.paisOrigen.html_name }}");
+	   		var countryListDestino = document.getElementById("{{ form2.paisDestino.html_name }}");
 	   		
 	   		/* Número de paíse dados de alta */
 	   		var numOfCountries = countries.length;
