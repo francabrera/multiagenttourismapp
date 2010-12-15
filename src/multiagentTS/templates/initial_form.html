@@ -70,7 +70,7 @@
 	{% csrf_token %}
       <table>
         <tr>
-          <th align="right">{{ form2.ciudadOrigen.label }}</th>
+          <th align="left">Desde:</th>
           <td>
 	      	<!-- País de Origen -->
 	      	<select id="countriesOrigen" name="countriesOrigen" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('{{ form2.ciudadOrigen.html_name }}'), this.selectedIndex)" >
@@ -85,7 +85,7 @@
           </td>
         </tr>
         <tr>
-          <th align="right">&nbsp;&nbsp;Hasta:&nbsp;</th>
+          <th align="left">Hasta:</th>
           <td>
 	      	<!-- País de Destino -->
     	  	<select id="countriesDestino" name="countriesDestino" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('{{ form2.ciudadDestino.html_name }}'), this.selectedIndex)" >
@@ -105,6 +105,8 @@
           <th align="right">Fecha de salida:&nbsp;</th>
           <td colspan="3">
           	<input type="text" size="10" id="fechaSalida" name="fechaSalida" />
+          	</td>
+          <td>
           	<script language="JavaScript">
 				new tcal ({
 				'formname': 'initialForm',
@@ -118,6 +120,16 @@
         <tr>
           <th align="right">Fecha de vuelta:&nbsp;</th>
           <td colspan="3">
+          	<input type="text" size="10" id="fechaLlegada" name="fechaLlegada" />
+          </td>
+          <td>
+          	<script language="JavaScript">
+				new tcal ({
+				'formname': 'initialForm',
+				'controlname': 'fechaLlegada'
+				});
+			</script>
+          	
           </td>
         </tr>
         </table>

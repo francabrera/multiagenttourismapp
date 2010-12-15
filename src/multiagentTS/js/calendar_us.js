@@ -34,9 +34,9 @@ function f_tcalParseDate (s_date) {
 // date generating function
 function f_tcalGenerDate (d_date) {
 	return (
-		 (d_date.getMonth() < 9 ? '0' : '') + (d_date.getMonth() + 1) + "/"
-		+ (d_date.getDate() < 10 ? '0' : '') + d_date.getDate() + "/"
-		+ d_date.getFullYear()
+			(d_date.getDate() < 10 ? '0' : '') + d_date.getDate() + "/" +
+			(d_date.getMonth() < 9 ? '0' : '') + (d_date.getMonth() + 1) + "/" +
+			d_date.getFullYear()
 	);
 }
 
@@ -218,7 +218,7 @@ function f_tcalUpdate (d_date) {
 			if (d_current.getMonth() != d_date.getMonth())
 				a_class[a_class.length] = 'othermonth';
 			// weekend
-			if (d_current.getDay() == 0 || d_current.getDay() == 6)
+			if (d_current.getDay() == 5 || d_current.getDay() == 6)
 				a_class[a_class.length] = 'weekend';
 			// today
 			if (d_current.valueOf() == d_today.valueOf())
