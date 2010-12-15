@@ -103,6 +103,7 @@ INSTALLED_APPS = (
     'multiagentTS.hotelagent',
     'multiagentTS.newsagent',
     'multiagentTS.imageagent',
+    'multiagentTS.guideagent',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
