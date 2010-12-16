@@ -6,30 +6,38 @@
 	function initialize() {
 		  if (GBrowserIsCompatible()) {
 		    var map = new GMap2(document.getElementById("map_canvas"));
-		    map.setCenter(new GLatLng(0, 0), 13);
+			var geocoder = new GClientGeocoder();
+			
+			if (geocoder) {
+			       geocoder.getLatLng(
+			         "{{ ciudad_destino }}, {{pais_destino}}",
+			         function(point) {
+			           if (!point) {
+			             alert(address + " not found");
+			           } else {
+			             map.setCenter(point, 13);
+			             var marker = new GMarker(point);
+			             map.addOverlay(marker);
+			             marker.openInfoWindowHtml(address);
+			           }
+			         }
+			       );
+			     }
 
-		    GEvent.addListener(map,"click", function(overlay,latlng) {     
-		      if (latlng) {   
-		        var myHtml = "The GLatLng value is: " + map.fromLatLngToDivPixel(latlng) + " at zoom level " + map.getZoom();
-		        map.openInfoWindow(latlng, myHtml);
-		      }
-		    });
 		    map.addControl(new GSmallMapControl());
 		    map.addControl(new GMapTypeControl());
 		  }
-		}	
+		}
 	
 	</script> 
 {% endblock %}
 	
 {% block bodyoptions %} onload="javascript:initialize()" {% endblock %}
 
-{% block section %} Localizador {% endblock %}
+{% block section %} Men&uacute; {% endblock %}
 
 {% block content %}
-<!--		<div id="map_canvas" style="width: 100%; height: 600px"></div>-->
-		{{ fecha_salida }}
-		{{ fecha_llegada }}
+
 		<ul>
 			<li><a href={{ guide_url }}> Agente Guía</a></li>
 			<li><a href={{ flight_url }}> Agente de vuelos</a></li>
@@ -37,6 +45,10 @@
 			<li><a href={{ image_url }}> Agente de imágenes</a></li>
 		</ul>
 		</br>
+
+        <h2> Localizador </h2> <br />
+
+		<div id="map_canvas" style="width: 100%; height: 600px"></div>
 		
 {% endblock %}
 
