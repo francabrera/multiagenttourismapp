@@ -5,4 +5,6 @@ from django.template import RequestContext
 
 def showImages (request, pais_origen, ciudad_origen, pais_destino, ciudad_destino):
     
-    return render_to_response('image.html', {'destino': ciudad_destino})
+    return render_to_response('image.html', 
+                              {'destino': ciudad_destino, 'pais_destino': pais_destino,
+                               'origen': ciudad_origen, 'pais_origen': pais_origen})
