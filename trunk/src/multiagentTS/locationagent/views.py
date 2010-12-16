@@ -15,4 +15,7 @@ def showMap (request, pais_origen, ciudad_origen, pais_destino, ciudad_destino):
     guideurl = 'http://' + request.get_host() + '/image/' + pais_origen + '/' + ciudad_origen + '/to/' + pais_destino + '/' + ciudad_destino
     context = {'flight_url': flighturl, 'image_url': imageurl,
                'hotel_url': hotelurl, 'guide_url': guideurl}
-    return render_to_response('location.html', context)
+    return render_to_response('location.html', {'pais_origen': pais_origen,
+                                                'pais_destino': pais_destino,
+                                                'ciudad_origen': ciudad_origen,
+                                                'ciudad_destino': ciudad_destino})
