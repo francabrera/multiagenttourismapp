@@ -75,13 +75,13 @@
           <th align="left">Desde:</th>
           <td>
 	      	<!-- País de Origen -->
-	      	<select id="{{ form2.paisOrigen.html_name }}" name="{{ form2.paisOrigen.html_name }}" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('{{ form2.ciudadOrigen.html_name }}'), this.selectedIndex)" >
+	      	<select id="{{ form2.paisOrigen.html_name }}" name="{{ form2.paisOrigen.html_name }}" size="1" style="width: 320px;" onChange="updateAirports(document.getElementById('{{ form2.ciudadOrigen.html_name }}'), this.selectedIndex, 'paisOrigenIndex')" >
 				<option value="" selected="selected">Seleccione un país...</option>
 			</select>
 		  </td>
 	      <td>
 			<!-- Ciudad de Origen -->
-			<select id="{{ form2.ciudadOrigen.html_name }}" name="{{ form2.ciudadOrigen.html_name }}" size="1" >
+			<select id="{{ form2.ciudadOrigen.html_name }}" name="{{ form2.ciudadOrigen.html_name }}" size="1" onChange="updateCities(this.selectedIndex, 'paisOrigenIndex', 'nombrePaisOrigen', 'nombreCiudadOrigen')" >
 				<option value="" selected="selected">Seleccione una ciudad...</option>
 			</select>
           </td>
@@ -90,13 +90,13 @@
           <th align="left">Hasta:</th>
           <td>
 	      	<!-- País de Destino -->
-    	  	<select id="{{ form2.paisDestino.html_name }}" name="{{ form2.paisDestino.html_name }}" size="1" style="width: 320px;" onChange="updatecities(document.getElementById('{{ form2.ciudadDestino.html_name }}'), this.selectedIndex)" >
+    	  	<select id="{{ form2.paisDestino.html_name }}" name="{{ form2.paisDestino.html_name }}" size="1" style="width: 320px;" onChange="updateAirports(document.getElementById('{{ form2.ciudadDestino.html_name }}'), this.selectedIndex, 'paisDestinoIndex')" >
 				<option value="" selected="selected">Seleccione un país...</option>
 			</select>
 		  </td>
 	      <td>
 			<!-- Ciudad de Destino -->
-			<select id="{{ form2.ciudadDestino.html_name }}" name="{{ form2.ciudadDestino.html_name }}" size="1" >
+			<select id="{{ form2.ciudadDestino.html_name }}" name="{{ form2.ciudadDestino.html_name }}" size="1" onChange="updateCities(this.selectedIndex, 'paisDestinoIndex', 'nombrePaisDestino', 'nombreCiudadDestino')" >
 				<option value="" selected="selected">Seleccione una ciudad...</option>
 			</select>
           </td>
@@ -140,12 +140,18 @@
     </form>
     <br/><br/>
     <div id="map_canvas"></div>
+    <input type="hidden" id="nombrePaisDestino" name="nombrePaisDestino" />
+    <input type="hidden" id="nombreCiudadDestino" name="nombreCiudadDestino" />
+    <input type="hidden" id="nombrePaisOrigen" name="nombrePaisOrigen" />
+    <input type="hidden" id="nombreCiudadOrigen" name="nombreCiudadOrigen" />
+    <input type="hidden" id="paisDestinoIndex" name="paisDestinoIndex" />
+    <input type="hidden" id="paisOrigenIndex" name="paisOrigenIndex" />
     <script type="text/javascript">
 	   		var countries = new Array();
 	   		{% for c in countries %}
 	   			
 	   			countries[countries.length] = 
-	   				["{{ c.name }}", "{{ c.isocode }}", [ "Seleccione una ciudad...|" {% for a in c.getAirports %} ,"{{ a.city }} - {{ a.name }}|{{ a.iatacode}}" {% endfor %} ]];
+	   				["{{ c.name }}", "{{ c.isocode }}", [ "Seleccione una ciudad...|" {% for a in c.getAirports %} ,"{{ a.city }}|{{ a.name }}|{{ a.iatacode}}" {% endfor %} ]];
 
 	   		{% endfor %}
 	   		
@@ -162,14 +168,29 @@
  				countryListDestino.options[i] = new Option(countries[i][0], countries[i][1], false, false);
 			}
 	   		
-	   		function updatecities(combo, selectIndex)
+	   		function updateAirports(combo, selectIndex, pais)
 	   		{
 	   			combo.options.length = 1;
 	   			if (selectIndex > 0)
 	   			{
 	   				var numOfAirports = countries[selectIndex][2].length;
-	   				for (i = 0; i < numOfAirports; i++)
-	   					combo.options[i] = new Option(countries[selectIndex][2][i].split("|")[0], countries[selectIndex][2][i].split("|")[1])
+	   				var pais = document.getElementById(pais);
+					pais.value = selectIndex;
+	   				combo.options[0] = new Option('Seleccione una ciudad...', '');
+	   				for (i = 1; i < numOfAirports; i++)
+	   					combo.options[i] = new Option(countries[selectIndex][2][i].split("|")[0] + ' - ' + countries[selectIndex][2][i].split("|")[1], countries[selectIndex][2][i].split("|")[2])
+	   			}
+	   		}
+	   		
+	   		function updateCities(selectIndex, paisIndex, pais, ciudad)
+	   		{
+	   			var index = document.getElementById(paisIndex);
+	   			if(selectIndex > 0)
+	   			{
+		   			var nombrePais = document.getElementById(pais);
+		   			var nombreCiudad = document.getElementById(ciudad);
+		   			nombreCiudad.value = countries[index.value][2][selectIndex].split('|')[0];
+		   			nombrePais.value = countries[index.value][0];
 	   			}
 	   		}
 	 </script> 
