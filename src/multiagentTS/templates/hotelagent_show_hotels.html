@@ -9,67 +9,64 @@
 {% block section %} Hoteles {% endblock %}
 
 {% block content %}
-
-		<form action="/user/" method="get">
-		{% csrf_token %}
-			<div class="hotel">
-				{% autoescape off %}
-				{% if hotels %}
-					{% for hotel in hotels %}
-						<table id="hotel{{ forloop.counter0 }}" border="1px" style="width: 60%; ">
-							<thead></thead>
-							<tbody>
-								<tr>
-									<td>
-										<span class="hotel">Nombre</span>
-									</td>
-									<td>
-										<span class="hotel">{{ hotel.name }}</span>
-									</td>
-								</tr>
-								<tr>	
-									<td>
-										<span class="hotel">Localización</span>
-									</td>
-									<td>
-										<span class="hotel">{{ hotel.address }}, {{ hotel.city }}</span>
-									</td>
-								</tr>
-								<tr>	
-									<td>
-										<span class="hotel">Teléfono</span>
-									</td>
-									<td>
-										<span class="hotel">{{ hotel.phone }}</span>
-									</td>
-								</tr>
-								<tr>	
-									<td>
-										<span class="hotel">Estrellas</span>
-									</td>
-									<td>
-										<span class="hotel">{{ hotel.stars }}</span>
-									</td>
-								</tr>
-								<tr>	
-									<td>
-										<span class="hotel">Precio</span>
-									</td>
-									<td>
-										<span class="hotel">{{ hotel.price }} {{ hotel.moneda }}</span>
-									</td>
-								</tr>
-							</tbody>
-							<tfoot></tfoot>
-						</table>
-					
-					{% endfor %}
-				{% else %}
-					<h3>No se ha encontrado ningún hotel disponible.</h3>
-				{% endif %}
-				{% endautoescape %}
-			</div>
-			<input type="submit" value="Volver">
-		</form>
+	<div class="hotel">
+		{% autoescape off %}
+		{% if hotels %}
+			{% for hotel in hotels %}
+				<table id="hotel{{ forloop.counter0 }}" border="1px" style="width: 60%; ">
+					<thead></thead>
+					<tbody>
+						<tr>
+							<td>
+								<span class="hotel">Nombre</span>
+							</td>
+							<td>
+								<span class="hotel">{{ hotel.name }}</span>
+							</td>
+						</tr>
+						<tr>	
+							<td>
+								<span class="hotel">Localización</span>
+							</td>
+							<td>
+								<span class="hotel">{{ hotel.address }}, {{ hotel.city }}</span>
+							</td>
+						</tr>
+						<tr>	
+							<td>
+								<span class="hotel">Teléfono</span>
+							</td>
+							<td>
+								<span class="hotel">{{ hotel.phone }}</span>
+							</td>
+						</tr>
+						<tr>	
+							<td>
+								<span class="hotel">Estrellas</span>
+							</td>
+							<td>
+								<span class="hotel">{{ hotel.stars }}</span>
+							</td>
+						</tr>
+						<tr>	
+							<td>
+								<span class="hotel">Precio</span>
+							</td>
+							<td>
+								<span class="hotel">{{ hotel.price }} {{ hotel.moneda }}</span>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot></tfoot>
+				</table>
+				<br/>
+			
+			{% endfor %}
+		{% else %}
+			<h3>No se ha encontrado ningún hotel disponible.</h3>
+		{% endif %}
+		{% endautoescape %}
+	</div>
+	<input type="button" value="Volver" onclick="history.go(-1);return false;">
 
 {% endblock %}

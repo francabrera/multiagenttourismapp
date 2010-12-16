@@ -9,73 +9,70 @@
 {% block section %} Vuelos {% endblock %}
 
 {% block content %}
-		<form action="/user/" method="get">
-		{% csrf_token %}
-			<div class="vuelo">
-				{% autoescape off %}
-				{% if flights %}
-					{% for flight in flights %}
-						<table id="vuelo{{ forloop.counter0 }}" border="1px" style="width: 60%; ">
-							<!-- IDA -->
-							<tbody>
-								<tr>
-									<td>
-										<img src="/img/salida.png"/>
-										<span class="idavuelta">IDA</span>
-									</td>
-									<td>
-									<!-- forloop.counter0  -->
-										<table border="1px" style="width: 100%; ">
-											<tr>
-												<td>Salida</td>
-												<td>{{ flight.ida.depart }}</td>
-												<td>{{ flight.ida.ciudadO }}</td>
-											</tr>
-											<tr>
-												<td>Llegada</td>
-												<td>{{ flight.ida.arrive }}</td>
-												<td>{{ flight.ida.ciudadD }}</td>
-											</tr>
-										</table>
-									</td>		
-								</tr>
-								<!-- VUELTA --> 
-								<tr>
-									<td>
-										<img src="/img/llegada.png"/>
-										<span class="idavuelta">VUELTA</span>
-									</td>
-									<td>
-										<table border="1px" style="width: 100%; ">
-											<tr>
-												<td>Salida</td>
-												<td>{{ flight.vuelta.depart }}</td>
-												<td>{{ flight.vuelta.ciudadO }}</td>
-											</tr>
-											<tr>
-												<td>Llegada</td>
-												<td>{{ flight.vuelta.arrive }}</td>
-												<td>{{ flight.vuelta.ciudadD }}</td>
-											</tr>
-										</table>
-									</td>		
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<td>Precio</td>
-									<td align="right">{{ flight.price }} {{ flight.moneda }}</td>
-								</tr>
-							</tfoot>
-						</table>
-						<br/>
-					{% endfor %}
-				{% else %}
-					<h3>No se ha encontrado ningún vuelo disponible.</h3>
-				{% endif %}
-				{% endautoescape %}
-			</div>
-			<input type="submit" value="Volver">
-		</form>
+	<div class="vuelo">
+		{% autoescape off %}
+		{% if flights %}
+			{% for flight in flights %}
+				<table id="vuelo{{ forloop.counter0 }}" border="1px" style="width: 60%; ">
+					<!-- IDA -->
+					<tbody>
+						<tr>
+							<td>
+								<img src="/img/salida.png"/>
+								<span class="idavuelta">IDA</span>
+							</td>
+							<td>
+							<!-- forloop.counter0  -->
+								<table border="1px" style="width: 100%; ">
+									<tr>
+										<td>Salida</td>
+										<td>{{ flight.ida.depart }}</td>
+										<td>{{ flight.ida.ciudadO }}</td>
+									</tr>
+									<tr>
+										<td>Llegada</td>
+										<td>{{ flight.ida.arrive }}</td>
+										<td>{{ flight.ida.ciudadD }}</td>
+									</tr>
+								</table>
+							</td>		
+						</tr>
+						<!-- VUELTA --> 
+						<tr>
+							<td>
+								<img src="/img/llegada.png"/>
+								<span class="idavuelta">VUELTA</span>
+							</td>
+							<td>
+								<table border="1px" style="width: 100%; ">
+									<tr>
+										<td>Salida</td>
+										<td>{{ flight.vuelta.depart }}</td>
+										<td>{{ flight.vuelta.ciudadO }}</td>
+									</tr>
+									<tr>
+										<td>Llegada</td>
+										<td>{{ flight.vuelta.arrive }}</td>
+										<td>{{ flight.vuelta.ciudadD }}</td>
+									</tr>
+								</table>
+							</td>		
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td>Precio</td>
+							<td align="right">{{ flight.price }} {{ flight.moneda }}</td>
+						</tr>
+					</tfoot>
+				</table>
+				<br/>
+			{% endfor %}
+		{% else %}
+			<h3>No se ha encontrado ningún vuelo disponible.</h3>
+		{% endif %}
+		{% endautoescape %}
+	</div>
+	<input type="button" value="Volver" onclick="history.go(-1);return false;">
 
 {% endblock %}
