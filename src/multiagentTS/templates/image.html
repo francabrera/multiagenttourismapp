@@ -12,9 +12,15 @@
 
 
 <br />
-		
+<h2>Ciudad de orígen: {{ origen }}, {{ pais_origen }}</h2>	
 <iframe
-   src="http://www.panoramio.com/wapi/template/list.html?tag={{ destino }}&amp;width=700&amp;height=100&amp;columns=10&amp;rows=1&amp;orientation=horizontal"
+   src="http://www.panoramio.com/wapi/template/list.html?tag={{ pais_origen }}+{{ origen }}&amp;width=700&amp;height=300&amp;columns=10&amp;rows=1&amp;orientation=horizontal"
+   frameborder="0" width="700" height="100" scrolling="no" marginwidth="0" marginheight="0">
+</iframe>
+<br/>
+<h2>Ciudad de destino: {{ destino }}, {{ pais_destino }}</h2>
+<iframe
+   src="http://www.panoramio.com/wapi/template/list.html?tag={{ pais_destino }}+{{ destino }}&amp;width=700&amp;height=300&amp;columns=10&amp;rows=1&amp;orientation=horizontal"
    frameborder="0" width="700" height="100" scrolling="no" marginwidth="0" marginheight="0">
 </iframe>
 		
