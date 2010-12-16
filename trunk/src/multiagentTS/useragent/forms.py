@@ -16,6 +16,10 @@ class UserPreferencesForm(forms.Form):
 	ciudadDestino = forms.CharField(max_length = 100, required = True)
 	fechaLlegada = forms.DateField(input_formats=['%d/%m/%Y'], required = True)
 	fechaSalida = forms.DateField(input_formats=['%d/%m/%Y'], required = True)
+	nPaisOrigen = forms.CharField(max_length = 100)
+	nCiudadOrigen = forms.CharField(max_length = 100)
+	nPaisDestino = forms.CharField(max_length = 100)
+	nCiudadDestino = forms.CharField(max_length = 100)
 	
 
 	def clean_ciudadOrigen(self):
@@ -41,6 +45,18 @@ class UserPreferencesForm(forms.Form):
 	def clean_fechaSalida(self):
 		fecha = self.cleaned_data['fechaSalida']
 		return fecha
+	
+	def nombreCiudadDestino (self):
+		return self.cleaned_data['nCiudadDestino']
+	
+	def nombreCiudadOrigen (self):
+		return self.cleaned_data['nCiudadOrigen']
+	
+	def nombrePaisDestino (self):
+		return self.cleaned_data['nPaisDestino']
+	
+	def nombrePaisOrigen (self):
+		return self.cleaned_data['nPaisOrigen']
 	
 class CountryForm(ModelForm):
 	

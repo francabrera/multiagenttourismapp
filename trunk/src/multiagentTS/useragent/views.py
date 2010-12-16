@@ -17,6 +17,10 @@ def index(request):
 			#send_mail(cd['subject'], cd['message'])
 			request.session['fecha_salida'] = form2.clean_fechaSalida()
 			request.session['fecha_llegada'] = form2.clean_fechaLlegada()
+			request.session['pais_destino'] = form2.nombrePaisDestino()
+			request.session['pais_origen'] = form2.nombrePaisOrigen()
+			request.session['ciudad_origen'] = form2.nombreCiudadOrigen()
+			request.session['ciudad_destino'] = form2.nombreCiudadDestino()
 			return showMap(request, ciudad_origen = form2.clean_ciudadOrigen(),
 						 ciudad_destino = form2.clean_ciudadDestino(),
 						pais_origen = form2.clean_paisOrigen(),

@@ -81,7 +81,7 @@
 		  </td>
 	      <td>
 			<!-- Ciudad de Origen -->
-			<select id="{{ form2.ciudadOrigen.html_name }}" name="{{ form2.ciudadOrigen.html_name }}" size="1" onChange="updateCities(this.selectedIndex, 'paisOrigenIndex', 'nombrePaisOrigen', 'nombreCiudadOrigen')" >
+			<select id="{{ form2.ciudadOrigen.html_name }}" name="{{ form2.ciudadOrigen.html_name }}" size="1" onChange="updateCities(this.selectedIndex, 'paisOrigenIndex', '{{ form2.nPaisOrigen.html_name }}', '{{ form2.nCiudadOrigen.html_name }}')" >
 				<option value="" selected="selected">Seleccione una ciudad...</option>
 			</select>
           </td>
@@ -96,7 +96,7 @@
 		  </td>
 	      <td>
 			<!-- Ciudad de Destino -->
-			<select id="{{ form2.ciudadDestino.html_name }}" name="{{ form2.ciudadDestino.html_name }}" size="1" onChange="updateCities(this.selectedIndex, 'paisDestinoIndex', 'nombrePaisDestino', 'nombreCiudadDestino')" >
+			<select id="{{ form2.ciudadDestino.html_name }}" name="{{ form2.ciudadDestino.html_name }}" size="1" onChange="updateCities(this.selectedIndex, 'paisDestinoIndex', '{{ form2.nPaisDestino.html_name }}', '{{ form2.nCiudadDestino.html_name }}')" >
 				<option value="" selected="selected">Seleccione una ciudad...</option>
 			</select>
           </td>
@@ -140,10 +140,10 @@
     </form>
     <br/><br/>
     <div id="map_canvas"></div>
-    <input type="hidden" id="nombrePaisDestino" name="nombrePaisDestino" />
-    <input type="hidden" id="nombreCiudadDestino" name="nombreCiudadDestino" />
-    <input type="hidden" id="nombrePaisOrigen" name="nombrePaisOrigen" />
-    <input type="hidden" id="nombreCiudadOrigen" name="nombreCiudadOrigen" />
+    <input type="hidden" id="{{ form2.nPaisDestino.html_name }}" name="{{ form2.nPaisDestino.html_name }}" />
+    <input type="hidden" id="{{ form2.nCiudadDestino.html_name }}" name="{{ form2.nCiudadDestino.html_name }}" />
+    <input type="hidden" id="{{ form2.nPaisOrigen.html_name }}" name="{{ form2.nPaisOrigen.html_name }}" />
+    <input type="hidden" id="{{ form2.nCiudadOrigen.html_name }}" name="{{ form2.nCiudadOrigen.html_name }}" />
     <input type="hidden" id="paisDestinoIndex" name="paisDestinoIndex" />
     <input type="hidden" id="paisOrigenIndex" name="paisOrigenIndex" />
     <script type="text/javascript">
