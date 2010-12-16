@@ -136,16 +136,19 @@
         </tr>
         </table>
         <br/><input name="submit" type="submit" value="Buscar" />
+    
+
+	    <input type="hidden" id="{{ form2.nPaisDestino.html_name }}" name="{{ form2.nPaisDestino.html_name }}" />
+	    <input type="hidden" id="{{ form2.nCiudadDestino.html_name }}" name="{{ form2.nCiudadDestino.html_name }}" />
+	    <input type="hidden" id="{{ form2.nPaisOrigen.html_name }}" name="{{ form2.nPaisOrigen.html_name }}" />
+	    <input type="hidden" id="{{ form2.nCiudadOrigen.html_name }}" name="{{ form2.nCiudadOrigen.html_name }}" />
+	    <input type="hidden" id="paisDestinoIndex" name="paisDestinoIndex" />
+	    <input type="hidden" id="paisOrigenIndex" name="paisOrigenIndex" />
      
     </form>
     <br/><br/>
-    <div id="map_canvas"></div>
-    <input type="hidden" id="{{ form2.nPaisDestino.html_name }}" name="{{ form2.nPaisDestino.html_name }}" />
-    <input type="hidden" id="{{ form2.nCiudadDestino.html_name }}" name="{{ form2.nCiudadDestino.html_name }}" />
-    <input type="hidden" id="{{ form2.nPaisOrigen.html_name }}" name="{{ form2.nPaisOrigen.html_name }}" />
-    <input type="hidden" id="{{ form2.nCiudadOrigen.html_name }}" name="{{ form2.nCiudadOrigen.html_name }}" />
-    <input type="hidden" id="paisDestinoIndex" name="paisDestinoIndex" />
-    <input type="hidden" id="paisOrigenIndex" name="paisOrigenIndex" />
+    
+
     <script type="text/javascript">
 	   		var countries = new Array();
 	   		{% for c in countries %}
