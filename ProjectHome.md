@@ -1,0 +1,1 @@
+Nuestro proyecto trata sobre un sistema multiagente que dará información variada sobre el destino que el usuario elija.
